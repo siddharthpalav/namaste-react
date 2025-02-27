@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 import { resList } from "../utils/mockData";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   // Local State Variable - Super powerful variable
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
+  let onlineStatus;
   // Whenever state variable update, react triggers a reconciliation cycle(re-renders the component)
   console.log("Body Rendered");
 
@@ -29,6 +31,15 @@ const Body = () => {
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false)
+    return (
+      <h1>
+        Looks like you're offline!!, Please check your internet connection;
+      </h1>
+    );
 
   // Conditional Rendering
   if (listOfRestaurants.length === 0) {
