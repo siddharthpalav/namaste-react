@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./Components/Header";
 import Body from "./Components/Body";
@@ -7,6 +7,8 @@ import Contact from "./Components/Contact";
 import Error from "./Components/Error";
 import RestaurantMenu from "./Components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
+import UserContext from "./utils/UserContext";
+
 // import Groceries from "./Components/Groceries";
 
 // not using keys (not acceptable)  <<<<< index as key <<<<<< unique id (best practice)
@@ -21,11 +23,28 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
 // lazy and Suspense, fallback
 
 const Applayout = () => {
+  //authentication
+  const [userName, setUserName] = useState();
+
+  useEffect(() => {
+    // Make an API call and send username and password
+    const data = {
+      name: "Siddharth Palav",
+    };
+    setUserName(data.name);
+  }, []);
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    // Default Value
+    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+      {/*Siddharth Palav*/}
+      <div className="app">
+        <UserContext.Provider value={{ loggedInUser: "Elon Musk" }}>
+          {/*Elon Musk*/}
+          <Header />
+        </UserContext.Provider>
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 
