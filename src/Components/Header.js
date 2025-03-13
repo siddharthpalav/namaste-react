@@ -3,6 +3,7 @@ import { LOGO_URL } from "../utils/constants";
 import { Link, useRouteError } from "react-router";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
@@ -16,6 +17,10 @@ const Header = () => {
   useEffect(() => {
     console.log("useEffect called");
   }, [btnNameReact]);
+
+  // Subscribing to the store using a selector
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log("cartItems => ", cartItems);
 
   // If no dependency array => useEffect is called on every render
   // If dependency array is empty = [] => useEffect is called on initial render(just once)
@@ -42,7 +47,9 @@ const Header = () => {
           <li className="px-4">
             <Link to="/groceries">Groceries</Link>
           </li>
-          <li className="px-4">Cart</li>
+          <li className="px-4 font-bold text-lg">
+            <Link to="/cart">Cart - ({cartItems.length} Items)</Link>
+          </li>
           <button
             className="login"
             onClick={() => {
@@ -52,7 +59,7 @@ const Header = () => {
             }}>
             {btnNameReact}
           </button>
-          <li className="mx-2 px -4 font-bold">{loggedInUser}</li>
+          <li className="mx-2 px-4 font-bold">{loggedInUser}</li>
         </ul>
       </div>
     </div>
