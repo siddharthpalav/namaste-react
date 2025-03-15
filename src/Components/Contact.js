@@ -1,7 +1,20 @@
 const Contact = () => {
   return (
     <div>
-      <h2>Please contact us</h2>
+      <h1 className="font-bold text-3xl p-4 m-4">Contact Us Page</h1>
+      <form>
+        <input
+          type="text"
+          placeholder="name"
+          className="border border-black p-2 m-2"></input>
+        <input
+          type="text"
+          placeholder="contact"
+          className="border border-black p-2 m-2"></input>
+        <button className="border border-black p-2 m-2 rounded-lg">
+          Submit
+        </button>
+      </form>
     </div>
   );
 };

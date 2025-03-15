@@ -72,3 +72,23 @@ import { Component } from "path";
 - Slice (cartSlice)
 - dispatch(action)
 - Selector
+
+# Type of testing (developer)
+
+- Unit Testing
+- Integration Testing
+- End to End Testing
+
+# Setting up Testing in our app
+
+- Install React Testing Library
+- Installed jest
+- Installed Babel dependencies
+- Configure Babel
+- Configure Parcel Config file to use disable Default babel transpilation
+- Jest configuration
+- Jest - npx jest --init
+- Install jsdom library
+- Install @babel/preset-react - to make JSX work in jest cases
+- Include @babel/preset-react inside my babel config
+- npm i -D @testing-library/jest-dom

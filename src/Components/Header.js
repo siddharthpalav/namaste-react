@@ -10,7 +10,7 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
   console.log("header rendered");
 
-  console.log(useRouteError());
+  // console.log(useRouteError());
 
   const { loggedInUser } = useContext(UserContext);
 

@@ -1,6 +1,5 @@
 import RestaurantCard, { withPromoted } from "./RestaurantCard";
 import { useState, useEffect, useContext } from "react";
-import { resList } from "../utils/mockData";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -57,6 +56,7 @@ const Body = () => {
         <div className="search m-4 p-4">
           <input
             className="border border-solid border-black"
+            data-testid="searchInput"
             type="text"
             value={loggedInUser}
             onChange={(e) => {
